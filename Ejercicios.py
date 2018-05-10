@@ -278,7 +278,36 @@ def extrae_diagonal_aux(lista, indiceFila, indiceColumna):
         if indiceFila != len(lista):
             return [lista[indiceFila][indiceColumna]] + extrae_diagonal_aux(lista, indiceFila + 1, indiceColumna + 1)
 
-print(extrae_diagonal([[20, 50, 60, 70, 80], [15, 20, 16, 40, 50], [30, 56, 60, 25, 30], [41, 85, 90, 64,
-70], [68, 43, 12, 24, 16]], 0))
+
+# ----------------------------------------------------------------------------------------
+# Ejercicio 8: triangulo_de_pascal
+# ----------------------------------------------------------------------------------------
+
+def triangulo_de_pascal(n):
+    return triangulo_de_pascal_aux(n, 0, [[1]])
+
+def triangulo_de_pascal_aux(n, nivel, resultado):
+    if nivel == n:
+        return resultado
+    else:
+        if n == 1:
+            resultado.append([1, 1])
+        else:
+            listaNivel = list()
+            listaNivel.append(1)
+            nivelActual = armar_nivel_aux(resultado[len(resultado) - 1], 1, [])
+            listaNivel.extend(nivelActual)
+            listaNivel.append(1)
+            resultado.append(listaNivel)
+        return triangulo_de_pascal_aux(n, nivel + 1, resultado)
+
+def armar_nivel_aux(lista, indice, resultado):
+    if indice == len(lista):
+        return resultado
+    else:
+        resultado.append(lista[indice] + lista[indice - 1])
+        return armar_nivel_aux(lista, indice + 1, resultado)
+
+print(triangulo_de_pascal(4))
 
 # <>
