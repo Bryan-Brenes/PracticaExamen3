@@ -480,5 +480,50 @@ def obtener_nuemeros_fila_aux(matriz, indice, fila):
     else:
         return [matriz[fila][indice]] + obtener_nuemeros_fila_aux(matriz, indice, fila + 1)
 
-print(transpuesta([[2, 4, 5], [7, 8, 9]]))
+# ----------------------------------------------------------------------------------------
+# Ejercicio 17: multiplica_matrices
+# ----------------------------------------------------------------------------------------
+
+
+def multiplica_matrices(matrizA, matrizB):
+    if len(matrizA) != 1 and len(matrizB) != 1:
+
+        if type(matrizA[0]) != int:
+            if len(matrizA[0]) == len(matrizB):
+                return multiplica_matrices_aux(matrizA, transpuesta(matrizB), 0)
+            else:
+                return 'Error: la cantidad de filas y columna es incorrecta'
+        else:
+            if len(matrizA) == len(matrizB):
+                return multiplica_matrices_aux(matrizA, transpuesta(matrizB), 0)
+            else:
+                return 'Error: la cantidad de filas y columna es incorrecta'
+    else:
+        return 'Error: las entradas deben ser matrices'
+
+def multiplica_matrices_aux(matrizA, matrizB, fila):
+    if fila == len(matrizA):
+        return []
+    else:
+        if fila != len(matrizA):
+            return [multiplicar(matrizA[fila], matrizB)] + multiplica_matrices_aux(matrizA, matrizB, fila + 1)
+
+def multiplicar(vector, matriz):
+    if matriz == list():
+        return []
+    else:
+        return [multiplicarVector(vector, matriz[0], 0)] + multiplicar(vector, matriz[1:])
+
+def multiplicarVector(vector1, vector2, cont):
+    if cont == len(vector1):
+        return 0
+    else:
+        return (vector1[cont]*vector2[cont]) + multiplicarVector(vector1, vector2, cont + 1)
+
+matrizA = [[3, 2, 1], [1, 1, 3], [0, 2, 1]]
+matrizB = [[2, 1], [1, 0], [3, 2]]
+
+#print(multiplicar([3, 2, 1], transpuesta(matrizB)))
+
+print(multiplica_matrices(matrizA, matrizB))
 # <>
