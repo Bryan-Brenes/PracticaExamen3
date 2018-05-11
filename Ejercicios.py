@@ -459,6 +459,26 @@ def resta_fila(filaA, filaB):
         cabeza_filaB = filaB[0]
         return [cabeza_filaA - cabeza_filaB] + resta_fila(filaA[1:], filaB[1:])
 
-print(suma_resta_matrices([[1, 3, 2], [1, 0, 0],[1, 2, 2]],[[1, 0, 5],[7, 5, 0], [2, 1, 1]], '+'))
+# ----------------------------------------------------------------------------------------
+# Ejercicio 16: transpuesta
+# ----------------------------------------------------------------------------------------
 
+
+def transpuesta(matriz):
+    return transpuesta_aux(matriz, 0)
+
+def transpuesta_aux(matriz, cont):
+    if cont == len(matriz[0]):
+        return []
+    else:
+        nuevaFila = obtener_nuemeros_fila_aux(matriz, cont, 0)
+        return [nuevaFila] + transpuesta_aux(matriz, cont + 1)
+
+def obtener_nuemeros_fila_aux(matriz, indice, fila):
+    if fila == len(matriz):
+        return []
+    else:
+        return [matriz[fila][indice]] + obtener_nuemeros_fila_aux(matriz, indice, fila + 1)
+
+print(transpuesta([[2, 4, 5], [7, 8, 9]]))
 # <>
