@@ -309,7 +309,7 @@ def armar_nivel_aux(lista, indice, resultado):
         return armar_nivel_aux(lista, indice + 1, resultado)
 
 # ----------------------------------------------------------------------------------------
-# Ejercicio 8: triangulo_de_pascal ---------Falta por implementar--------------
+# Ejercicio 9: triangulo_de_pascal ---------Falta por implementar--------------
 # ----------------------------------------------------------------------------------------
 
 def triangulo_de_pascal_p(n):
