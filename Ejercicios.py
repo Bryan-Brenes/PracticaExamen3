@@ -308,6 +308,50 @@ def armar_nivel_aux(lista, indice, resultado):
         resultado.append(lista[indice] + lista[indice - 1])
         return armar_nivel_aux(lista, indice + 1, resultado)
 
-print(triangulo_de_pascal(4))
+# ----------------------------------------------------------------------------------------
+# Ejercicio 8: triangulo_de_pascal ---------Falta por implementar--------------
+# ----------------------------------------------------------------------------------------
+
+def triangulo_de_pascal_p(n):
+    return triangulo_de_pascal_aux_p(n, 0, [[1]])
+
+def triangulo_de_pascal_aux_p(n, nivel, inicio):
+    if nivel == n:
+        if n == 0:
+            return inicio
+        else:
+            return []
+    else:
+        if n == 1:
+            return inicio + [[1, 1]] + triangulo_de_pascal_aux_p(n, nivel + 1, inicio)
+        else:
+            return inicio + [[1] + [2] + [1]] + triangulo_de_pascal_aux_p(n, nivel + 1, inicio)
+
+def armar_nivel_aux_p(lista, indice):
+    if indice == len(lista):
+        return []
+    else:
+        return [lista[indice] + lista[indice - 1]] + armar_nivel_aux_p(lista, indice + 1)
+
+#print(triangulo_de_pascal_p(4))
+
+# ----------------------------------------------------------------------------------------
+# Ejercicio 10: diferencia_simetrica
+# ----------------------------------------------------------------------------------------
+
+def diferencia_simetrica(lista1, lista2):
+    primeraRecursion = diferencia_simetrica_aux(lista1, lista2, [])
+    return diferencia_simetrica_aux(lista2, lista1, primeraRecursion)
+
+def diferencia_simetrica_aux(lista1, lista2, resultado):
+    if lista1 == list():
+        return resultado
+    else:
+        if lista1[0] not in lista2 and lista1[0] not in resultado:
+            resultado.append(lista1[0])
+        return diferencia_simetrica_aux(lista1[1:], lista2, resultado)
+
+#print(diferencia_simetrica([10, 15, 20, 15], [20, 9, 50, 100, 10]))
+
 
 # <>
