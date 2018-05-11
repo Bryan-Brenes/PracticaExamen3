@@ -404,5 +404,27 @@ def elimina_notas_aux(lista, nota_a_eliminar):
         else:
             return [lista[0]] + elimina_notas_aux(lista[1:], nota_a_eliminar)
 
-print(notas([100, 875, 480, 560, 480, 875, 100, 100, 575, 480, 480]))
+# ----------------------------------------------------------------------------------------
+# Ejercicio 14: extiende
+# ----------------------------------------------------------------------------------------
+
+
+def extiende(lista):
+    return extiende_aux(lista)
+
+def extiende_aux(lista):
+    if lista == list():
+        return []
+    else:
+        tupla = lista[0]
+        listaNotas = obtener_lista_notas_aux(tupla[0], tupla[1], 0)
+        return listaNotas + extiende_aux(lista[1:])
+
+def obtener_lista_notas_aux(nota, veces, cont):
+    if cont == veces:
+        return []
+    else:
+        return [nota] + obtener_lista_notas_aux(nota, veces, cont + 1)
+
+print(extiende([(100, 3), (875, 2), (480, 4), (560, 1), (575, 1)]))
 # <>
