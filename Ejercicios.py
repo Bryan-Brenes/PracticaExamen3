@@ -376,6 +376,33 @@ def obtener_fila_aux(n, columna, indice):
         else:
             return [0] + obtener_fila_aux(n, columna, indice + 1)
 
-print(matriz_unitaria(6))
+# ----------------------------------------------------------------------------------------
+# Ejercicio 13: notas
+# ----------------------------------------------------------------------------------------
 
+
+def notas(lista):
+    return notas_aux(lista)
+
+def notas_aux(lista):
+    if lista == list():
+        return []
+    else:
+        notaActual = lista[0]
+        numeroNotas = lista.count(notaActual)
+        tupla = (notaActual, numeroNotas)
+        lista = elimina_notas_aux(lista, notaActual)
+
+        return [tupla] + notas_aux(lista)
+
+def elimina_notas_aux(lista, nota_a_eliminar):
+    if lista == list():
+        return []
+    else:
+        if lista[0] == nota_a_eliminar:
+            return elimina_notas_aux(lista[1:], nota_a_eliminar)
+        else:
+            return [lista[0]] + elimina_notas_aux(lista[1:], nota_a_eliminar)
+
+print(notas([100, 875, 480, 560, 480, 875, 100, 100, 575, 480, 480]))
 # <>
