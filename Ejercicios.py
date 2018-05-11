@@ -353,5 +353,29 @@ def diferencia_simetrica_aux(lista1, lista2, resultado):
 
 #print(diferencia_simetrica([10, 15, 20, 15], [20, 9, 50, 100, 10]))
 
+# ----------------------------------------------------------------------------------------
+# Ejercicio 12: matriz_unitaria
+# ----------------------------------------------------------------------------------------
+
+
+def matriz_unitaria(n):
+    return matriz_unitaria_aux(n, 0)
+
+def matriz_unitaria_aux(n, indice):
+    if indice == n:
+        return []
+    else:
+        return [obtener_fila_aux(n, indice, 0)] + matriz_unitaria_aux(n, indice + 1)
+
+def obtener_fila_aux(n, columna, indice):
+    if indice == n:
+        return []
+    else:
+        if indice == columna:
+            return [1] + obtener_fila_aux(n, columna, indice + 1)
+        else:
+            return [0] + obtener_fila_aux(n, columna, indice + 1)
+
+print(matriz_unitaria(6))
 
 # <>
