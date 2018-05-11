@@ -426,5 +426,39 @@ def obtener_lista_notas_aux(nota, veces, cont):
     else:
         return [nota] + obtener_lista_notas_aux(nota, veces, cont + 1)
 
-print(extiende([(100, 3), (875, 2), (480, 4), (560, 1), (575, 1)]))
+
+# ----------------------------------------------------------------------------------------
+# Ejercicio 15: suma_resta_matrices
+# ----------------------------------------------------------------------------------------
+
+def suma_resta_matrices(matrizA, matrizB, operacion):
+    return suma_resta_matrices_aux(matrizA, matrizB, operacion)
+
+def suma_resta_matrices_aux(matrizA, matrizB, operacion):
+    if matrizA == list():
+        return []
+    else:
+        if operacion == '+':
+            return [suma_fila(matrizA[0], matrizB[0])] + suma_resta_matrices_aux(matrizA[1:], matrizB[1:], operacion)
+        else:
+            return [resta_fila(matrizA[0], matrizB[0])] + suma_resta_matrices_aux(matrizA[1:], matrizB[1:], operacion)
+
+def suma_fila(filaA, filaB):
+    if filaA == list():
+        return []
+    else:
+        cabeza_filaA = filaA[0]
+        cabeza_filaB = filaB[0]
+        return [cabeza_filaA + cabeza_filaB] + suma_fila(filaA[1:], filaB[1:])
+
+def resta_fila(filaA, filaB):
+    if filaA == list():
+        return []
+    else:
+        cabeza_filaA = filaA[0]
+        cabeza_filaB = filaB[0]
+        return [cabeza_filaA - cabeza_filaB] + resta_fila(filaA[1:], filaB[1:])
+
+print(suma_resta_matrices([[1, 3, 2], [1, 0, 0],[1, 2, 2]],[[1, 0, 5],[7, 5, 0], [2, 1, 1]], '+'))
+
 # <>
